@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCLA Health - Agentforce Appointment Mock Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f7f6; }
+        .form-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
+        h2 { color: #005596; margin-top: 0; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #0073e6; color: white; border: none; padding: 12px; width: 100%; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #005596; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Book Appointment (Mock)</h2>
+    <form id="appointmentForm">
+        <div class="form-group">
+            <label for="providerName">Provider Name:</label>
+            <input type="text" id="providerName" placeholder="Loaded from URL...">
+        </div>
+        <div class="form-group">
+            <label for="specialtyField">Specialty:</label>
+            <input type="text" id="specialtyField" placeholder="Waiting for Agentforce parameter..." style="background-color: #eef9ff; font-weight: bold;">
+        </div>
+        <button type="button" onclick="alert('Form Submitted successfully!')">Proceed to Schedule</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 1. Parse URL Parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const specialtyParam = urlParams.get('specialty');
+        const providerParam = urlParams.get('provider');
+
+        // 2. Inject into Specialty field if found
+        if (specialtyParam) {
+            document.getElementById('specialtyField').value = decodeURIComponent(specialtyParam);
+        }
+        
+        // 3. Inject into Provider field if found (Bonus test)
+        if (providerParam) {
+            document.getElementById('providerName').value = decodeURIComponent(providerParam);
+        }
+    });
+</script>
+
+</body>
+</html>
